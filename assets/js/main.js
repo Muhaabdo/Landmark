@@ -143,8 +143,23 @@
 
   /* ---------- header on scroll ---------- */
   const header = $(".site-header");
-  const onScroll = () => header && header.classList.toggle("is-scrolled", window.scrollY > 40);
-  window.addEventListener("scroll", onScroll, { passive: true });
+  let lastY = window.scrollY;
+  let ticking = false;
+  const onScroll = () => {
+    if (!header) return;
+    const y = window.scrollY;
+    header.classList.toggle("is-scrolled", y > 40);
+    const delta = y - lastY;
+    if (Math.abs(delta) > 6) {
+      /* hide when scrolling down past the header, show when scrolling up */
+      header.classList.toggle("is-hidden", delta > 0 && y > 120 && !document.body.classList.contains("no-scroll"));
+      lastY = y;
+    }
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
   onScroll();
 
   /* ---------- cookie banner: once per session, auto-hide ---------- */

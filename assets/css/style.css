@@ -60,7 +60,8 @@ button { font: inherit; }
 .btn--light { background: #fff; color: var(--ink); }
 
 /* ---------- header ---------- */
-.site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--header-h); transition: background .2s ease, box-shadow .2s ease; }
+.site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--header-h); transition: background .2s ease, box-shadow .2s ease, transform .3s ease; will-change: transform; }
+.site-header.is-hidden { transform: translateY(-100%); box-shadow: none; }
 .site-header.is-scrolled { background: rgba(38, 40, 42, .96); box-shadow: 0 2px 16px rgba(0,0,0,.18); }
 .site-header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .logo { color: #fff; text-decoration: none; font-weight: 700; font-size: 21px; letter-spacing: 2.5px; direction: ltr; }
