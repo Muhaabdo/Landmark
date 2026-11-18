@@ -164,11 +164,17 @@
 
   /* ---------- cookie banner: once per session, auto-hide ---------- */
   try {
-    if (!sessionStorage.getItem("cookieSeen")) {
-      const c = $("#cookie");
-      if (c) c.hidden = false;
-      sessionStorage.setItem("cookieSeen", "1");
-      if (c) setTimeout(() => (c.hidden = true), 8000);
+    const c = $("#cookie");
+    if (c && !sessionStorage.getItem("cookieSeen")) {
+      /* show only after the user scrolls past the hero CTAs, so it never covers them */
+      const showCookie = () => {
+        if (window.scrollY < window.innerHeight * 0.7) return;
+        window.removeEventListener("scroll", showCookie);
+        c.hidden = false;
+        sessionStorage.setItem("cookieSeen", "1");
+        setTimeout(() => (c.hidden = true), 7000);
+      };
+      window.addEventListener("scroll", showCookie, { passive: true });
     }
   } catch (_) { /* storage blocked */ }
 

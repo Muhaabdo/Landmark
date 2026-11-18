@@ -251,8 +251,12 @@ button { font: inherit; }
   .section { padding: 58px 0; }
   .site-header .btn--sm span { display: none; }
   .site-header .btn--sm { padding: 9px; }
-  .hero__content { padding: 110px 0 96px; }
-  .hero__lead { font-size: 16px; }
+  .hero { min-height: calc(100svh - 72px); }
+  .hero__content { padding: 96px 0 28px; width: calc(100% - 32px); margin-inline: auto; }
+  .hero__eyebrow, .hero__prices, .hero__cta2 { display: none; }
+  .hero__latin { font-size: 15px; letter-spacing: 6px; margin: 4px 0 12px; }
+  .hero__lead { font-size: 15.5px; margin-bottom: 18px; }
+  .hero__stats { margin-bottom: 18px; }
   .hero__stat { min-width: 0; flex: 1; padding: 8px 12px; }
   .hero__stat b { font-size: 20px; }
   .hero__ctas .btn { flex: 1 1 100%; }
