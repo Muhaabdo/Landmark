@@ -132,7 +132,7 @@
     if (t.closest("[data-lb-next]")) { showLb(lbIndex + 1); return; }
     if (t.closest("[data-lb-prev]")) { showLb(lbIndex - 1); return; }
 
-    if (t.closest("[data-cookie-ok]")) { const c = $("#cookie"); if (c) c.hidden = true; }
+
   });
 
   document.addEventListener("keydown", (e) => {
@@ -169,15 +169,13 @@
   try {
     const c = $("#cookie");
     if (c && !sessionStorage.getItem("cookieSeen")) {
-      /* show only after the user scrolls past the hero CTAs, so it never covers them */
-      const showCookie = () => {
-        if (window.scrollY < window.innerHeight * 0.7) return;
-        window.removeEventListener("scroll", showCookie);
-        c.hidden = false;
-        sessionStorage.setItem("cookieSeen", "1");
-        setTimeout(() => (c.hidden = true), 7000);
-      };
-      window.addEventListener("scroll", showCookie, { passive: true });
+      /* thin bar at the top of the page — never covers the CTAs */
+      c.hidden = false;
+      document.body.classList.add("has-cookie");
+      sessionStorage.setItem("cookieSeen", "1");
+      const hideCookie = () => { c.hidden = true; document.body.classList.remove("has-cookie"); };
+      c.querySelector("[data-cookie-ok]")?.addEventListener("click", hideCookie);
+      setTimeout(hideCookie, 8000);
     }
   } catch (_) { /* storage blocked */ }
 
