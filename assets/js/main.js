@@ -143,11 +143,14 @@
 
   /* ---------- header on scroll ---------- */
   const header = $(".site-header");
+  const mbar = $(".mbar");
+  const heroEl = $(".hero, .home-hero");
   let lastY = window.scrollY;
   let ticking = false;
   const onScroll = () => {
-    if (!header) return;
     const y = window.scrollY;
+    if (mbar) mbar.classList.toggle("is-visible", !heroEl || y > heroEl.offsetHeight - 80);
+    if (!header) { ticking = false; return; }
     header.classList.toggle("is-scrolled", y > 40);
     const delta = y - lastY;
     if (Math.abs(delta) > 6) {

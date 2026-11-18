@@ -87,6 +87,7 @@ button { font: inherit; }
 .hero__stat--accent small { color: rgba(255,255,255,.85); }
 .hero__prices { margin: 0 0 24px; color: rgba(255,255,255,.85); font-size: 15px; }
 .hero__prices b { color: #fff; font-size: 17px; }
+.hero__prices i { font-style: normal; }
 .hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* ---------- highlights ---------- */
@@ -251,9 +252,12 @@ button { font: inherit; }
   .section { padding: 58px 0; }
   .site-header .btn--sm span { display: none; }
   .site-header .btn--sm { padding: 9px; }
-  .hero { min-height: calc(100svh - 72px); }
-  .hero__content { padding: 96px 0 28px; width: calc(100% - 32px); margin-inline: auto; }
-  .hero__eyebrow, .hero__prices, .hero__cta2 { display: none; }
+  .hero__content { padding: 96px 0 32px; width: calc(100% - 32px); margin-inline: auto; }
+  .hero__eyebrow, .hero__cta2 { display: none; }
+  .hero__prices { font-size: 14px; margin-bottom: 18px; line-height: 1.8; }
+  .hero__prices span { display: block; }
+  .hero__prices i { display: none; }
+  .hero__prices b { font-size: 15.5px; }
   .hero__latin { font-size: 15px; letter-spacing: 6px; margin: 4px 0 12px; }
   .hero__lead { font-size: 15.5px; margin-bottom: 18px; }
   .hero__stats { margin-bottom: 18px; }
@@ -280,6 +284,8 @@ button { font: inherit; }
   .cta-band__actions, .cta-band__actions .btn { width: 100%; }
   .wa-float { display: none; }
   .mbar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; inset: auto 0 0 0; z-index: 45; background: #fff; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -4px 18px rgba(0,0,0,.12); }
+  .mbar { transform: translateY(110%); transition: transform .3s ease; }
+  .mbar.is-visible { transform: none; }
   .mbar .btn { padding: 12px 10px; }
   body { padding-bottom: 72px; }
   .cookie { inset-inline: 12px; bottom: 84px; max-width: none; }
