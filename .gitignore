@@ -1,0 +1,7 @@
+# source files — not for deploy
+_source/
+BulkResizePhotos.com/
+*.zip
+/[0-9]*.png
+/footerlogoMobile.png
+*.pdf
